@@ -18,6 +18,7 @@ interface Props<T> {
   accentColor: string
   highlightFn?: (row: T) => boolean
   sectionFn?: (row: T, index: number, data: T[]) => string | null
+  footerNote?: string | null
 }
 
 function getVal(row: unknown, key: string): unknown {
@@ -35,7 +36,7 @@ function getSortValue(val: unknown): string | number {
 }
 
 export default function DataTable<T extends object>({
-  data, columns, search, searchKeys, accentColor, highlightFn, sectionFn
+  data, columns, search, searchKeys, accentColor, highlightFn, sectionFn, footerNote
 }: Props<T>) {
   const [sort, setSort] = useState<SortConfig>({ key: '', direction: null })
 
@@ -68,7 +69,7 @@ export default function DataTable<T extends object>({
   }
 
   const SortIcon = ({ col }: { col: string }) => {
-    if (sort.key !== col) return <span className="text-steel-700 ml-1">&udarr;</span>
+    if (sort.key !== col) return <span className="text-steel-700 ml-1">{'\u21C5'}</span>
     return (
       <span className="ml-1" style={{ color: `var(--color-${accentColor})` }}>
         {sort.direction === 'asc' ? '\u25b2' : '\u25bc'}
@@ -77,14 +78,14 @@ export default function DataTable<T extends object>({
   }
 
   return (
-    <div className="table-wrap rounded-lg border border-steel-800 bg-steel-900/50">
+    <div className="table-wrap rounded-lg border border-steel-800 bg-steel-900/50 max-h-[calc(100vh-220px)] overflow-auto">
       <table className="w-full text-sm">
-        <thead>
-          <tr className="border-b border-steel-800">
+        <thead className="sticky top-0 z-10 bg-steel-900 shadow-[0_1px_0_0_var(--color-steel-800)]">
+          <tr>
             {columns.map(col => (
               <th
                 key={col.key}
-                className={`px-3 py-2.5 font-semibold text-steel-300 whitespace-nowrap ${
+                className={`px-3 py-2.5 font-semibold text-steel-300 whitespace-nowrap bg-steel-900 ${
                   col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'
                 } ${col.sortable !== false ? 'cursor-pointer select-none hover:text-steel-100' : ''}`}
                 style={col.width ? { width: col.width } : undefined}
@@ -147,7 +148,7 @@ export default function DataTable<T extends object>({
       </table>
       <div className="px-3 py-2 border-t border-steel-800 text-xs text-steel-500 flex justify-between">
         <span>{sorted.length} entrees{search ? ' (filtre)' : ''}</span>
-        <span>75% engagement standard</span>
+        {footerNote !== null && <span>{footerNote ?? '75% engagement standard'}</span>}
       </div>
     </div>
   )

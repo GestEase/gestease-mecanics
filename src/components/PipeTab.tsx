@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import DataTable from './DataTable'
 import { pipeData } from '../data/pipe'
-import type { PipeThread } from '../types'
+import type { PipeThread, UnitSystem } from '../types'
 
-interface Props { search: string }
+const MM = 25.4
+
+interface Props { search: string; units: UnitSystem }
 
 const STANDARDS = ['ALL', 'NPT', 'NPTF', 'BSPP (G)', 'BSPT (R)'] as const
 
-export default function PipeTab({ search }: Props) {
+export default function PipeTab({ search, units }: Props) {
+  const isIn = units === 'imperial'
   const [stdFilter, setStdFilter] = useState<string>('ALL')
 
   const data = stdFilter === 'ALL'
@@ -27,9 +30,18 @@ export default function PipeTab({ search }: Props) {
     }},
     { key: 'tpi' as const, label: 'TPI', align: 'right' as const },
     { key: 'taper' as const, label: 'Taper' },
-    { key: 'tapDrillDecimal' as const, label: 'Tap Drill (in)', align: 'right' as const, render: (v: unknown) => <span className="font-mono font-semibold">{Number(v).toFixed(4)}</span> },
-    { key: 'tapDrillMm' as const, label: 'Tap Drill (mm)', align: 'right' as const, render: (v: unknown) => <span className="font-mono">{Number(v).toFixed(2)}</span> },
-    { key: 'odMajorDia' as const, label: 'OD Major \u00d8', align: 'right' as const, render: (v: unknown) => <span className="font-mono">{Number(v).toFixed(4)}</span> },
+    { key: 'tapDrillDecimal' as const, label: isIn ? 'Tap Drill (in)' : 'Tap Drill (mm)', align: 'right' as const, render: (v: unknown) => {
+      const n = Number(v)
+      return <span className="font-mono font-semibold">{isIn ? n.toFixed(4) : (n * MM).toFixed(2)}</span>
+    }},
+    { key: 'tapDrillMm' as const, label: isIn ? 'Tap Drill (mm)' : 'Tap Drill (in)', align: 'right' as const, render: (v: unknown) => {
+      const n = Number(v)
+      return <span className="font-mono">{isIn ? n.toFixed(2) : (n / MM).toFixed(4)}</span>
+    }},
+    { key: 'odMajorDia' as const, label: isIn ? 'OD Major Ø (in)' : 'OD Major Ø (mm)', align: 'right' as const, render: (v: unknown) => {
+      const n = Number(v)
+      return <span className="font-mono">{isIn ? n.toFixed(4) : (n * MM).toFixed(2)}</span>
+    }},
     { key: 'sealantRequired' as const, label: 'Etancheite' },
     { key: 'useCase' as const, label: 'Usage' },
     { key: 'notes' as const, label: 'Notes' },

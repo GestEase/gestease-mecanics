@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import DataTable from './DataTable'
 import { specialData } from '../data/special'
-import type { SpecialThread } from '../types'
+import type { SpecialThread, UnitSystem } from '../types'
 
-interface Props { search: string }
+interface Props { search: string; units: UnitSystem }
 
 const TYPES = ['ALL', 'ACME General', 'Stub ACME', 'Buttress 45\u00b0/7\u00b0', 'UNEF', 'Trapezoidal ISO'] as const
 
-export default function SpecialTab({ search }: Props) {
+export default function SpecialTab({ search, units: _units }: Props) {
   const [typeFilter, setTypeFilter] = useState<string>('ALL')
 
   const data = typeFilter === 'ALL'

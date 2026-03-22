@@ -6,12 +6,12 @@ export default function ReferenceTab() {
         <div className="grid sm:grid-cols-2 gap-4">
           <FormulaCard
             label="Imperial (UN*)"
-            formula="Tap Drill = Major \u00d8 \u2212 (1 / TPI)"
+            formula="Tap Drill = Major Ø − (1 / TPI)"
             note="Donne ~75% d'engagement"
           />
           <FormulaCard
             label="Metric (M)"
-            formula="Tap Drill = Nominal \u00d8 \u2212 Pitch (mm)"
+            formula="Tap Drill = Nominal Ø − Pitch (mm)"
             note="Idem 75-80%"
           />
         </div>
@@ -26,12 +26,12 @@ export default function ReferenceTab() {
         <div className="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm">
           <DefRow term="TPI" def="Threads Per Inch — nombre de filets par pouce" />
           <DefRow term="Pitch" def="Distance axiale entre deux cretes consecutives (mm)" />
-          <DefRow term="Major \u00d8" def="Diametre exterieur nominal du filet (crete)" />
-          <DefRow term="Minor \u00d8" def="Diametre interieur (fond de filet)" />
-          <DefRow term="Thread Depth" def="Profondeur radiale = (Major \u2212 Minor) / 2" />
-          <DefRow term="Tap Drill" def="Foret utilise avant le taraudage (\u2248 diametre mineur)" />
+          <DefRow term="Major Ø" def="Diametre exterieur nominal du filet (crete)" />
+          <DefRow term="Minor Ø" def="Diametre interieur (fond de filet)" />
+          <DefRow term="Thread Depth" def="Profondeur radiale = (Major − Minor) / 2" />
+          <DefRow term="Tap Drill" def="Foret utilise avant le taraudage (≈ diametre mineur)" />
           <DefRow term="Clearance Drill" def="Foret pour passage libre du boulon entier" />
-          <DefRow term="Engagement" def="Longueur de contact filet-filet (min = 1\u00d7\u00d8 nominal)" />
+          <DefRow term="Engagement" def="Longueur de contact filet-filet (min = 1×Ø nominal)" />
         </div>
       </Section>
 
@@ -54,12 +54,12 @@ export default function ReferenceTab() {
       {/* Conseils */}
       <Section title="Conseils Pratiques" color="metric">
         <div className="space-y-2 text-sm">
-          <TipRow icon="wrench" title="Materiaux tendres" tip="Alu, plastique \u2192 foret legerement plus grand (+0.1mm)" />
-          <TipRow icon="shield" title="Acier inox" tip="Reduire l'engagement a 60% — foret plus grand" />
-          <TipRow icon="alert" title="Alu coule" tip="50-65% engagement pour eviter arrachement" />
-          <TipRow icon="arrow-down" title="Filets borgnes" tip="Percer 3-5 filets plus profond que l'engagement" />
-          <TipRow icon="droplet" title="Lubrification" tip="Toujours huile de coupe — critique pour inox et titane" />
-          <TipRow icon="gauge" title="Vitesse de coupe" tip="Acier: 10-15 m/min | Alu: 40-60 m/min | Inox: 5-8 m/min" />
+          <TipRow title="Materiaux tendres" tip="Alu, plastique → foret legerement plus grand (+0.1mm)" />
+          <TipRow title="Acier inox" tip="Reduire l'engagement a 60% — foret plus grand" />
+          <TipRow title="Alu coule" tip="50-65% engagement pour eviter arrachement" />
+          <TipRow title="Filets borgnes" tip="Percer 3-5 filets plus profond que l'engagement" />
+          <TipRow title="Lubrification" tip="Toujours huile de coupe — critique pour inox et titane" />
+          <TipRow title="Vitesse de coupe" tip="Acier: 10-15 m/min | Alu: 40-60 m/min | Inox: 5-8 m/min" />
         </div>
       </Section>
     </div>
@@ -112,7 +112,7 @@ function NormRow({ code, norm }: { code: string; norm: string }) {
   )
 }
 
-function TipRow({ title, tip }: { icon: string; title: string; tip: string }) {
+function TipRow({ title, tip }: { title: string; tip: string }) {
   return (
     <div className="flex gap-3 py-2 border-b border-steel-800/50">
       <span className="text-metric font-semibold shrink-0 w-36">{title}</span>

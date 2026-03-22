@@ -1,16 +1,24 @@
 import { useState } from 'react'
 import DataTable from './DataTable'
 import { imperialData } from '../data/imperial'
-import type { ImperialThread } from '../types'
+import type { ImperialThread, UnitSystem } from '../types'
 
-interface Props { search: string }
+const MM = 25.4
 
-export default function ImperialTab({ search }: Props) {
+interface Props { search: string; units: UnitSystem }
+
+export default function ImperialTab({ search, units }: Props) {
   const [seriesFilter, setSeriesFilter] = useState<'ALL' | 'UNC' | 'UNF'>('ALL')
+  const isIn = units === 'imperial'
 
   const data = seriesFilter === 'ALL'
     ? imperialData
     : imperialData.filter(r => r.series === seriesFilter)
+
+  const fmtDia = (v: unknown) => {
+    const n = Number(v)
+    return <span className="font-mono">{isIn ? n.toFixed(4) : (n * MM).toFixed(2)}</span>
+  }
 
   const columns = [
     { key: 'tapSize' as const, label: 'Tap Size', render: (v: unknown) => <span className="font-mono font-bold text-imperial">{String(v)}</span> },
@@ -21,10 +29,10 @@ export default function ImperialTab({ search }: Props) {
     )},
     { key: 'tpi' as const, label: 'TPI', align: 'right' as const },
     { key: 'tapDrillFraction' as const, label: 'Tap Drill' },
-    { key: 'tapDrillDecimal' as const, label: 'Decimal (in)', align: 'right' as const, render: (v: unknown) => <span className="font-mono">{Number(v).toFixed(4)}</span> },
+    { key: 'tapDrillDecimal' as const, label: isIn ? 'Tap Drill (in)' : 'Tap Drill (mm)', align: 'right' as const, render: fmtDia },
     { key: 'tapDrillNearest' as const, label: 'Nearest #/Letter' },
-    { key: 'minorDia' as const, label: 'Minor \u00d8 (in)', align: 'right' as const, render: (v: unknown) => <span className="font-mono">{Number(v).toFixed(4)}</span> },
-    { key: 'majorDia' as const, label: 'Major \u00d8 (in)', align: 'right' as const, render: (v: unknown) => <span className="font-mono">{Number(v).toFixed(4)}</span> },
+    { key: 'minorDia' as const, label: isIn ? 'Minor Ø (in)' : 'Minor Ø (mm)', align: 'right' as const, render: fmtDia },
+    { key: 'majorDia' as const, label: isIn ? 'Major Ø (in)' : 'Major Ø (mm)', align: 'right' as const, render: fmtDia },
     { key: 'clearanceDrill' as const, label: 'Clearance' },
     { key: 'notes' as const, label: 'Notes' },
   ]

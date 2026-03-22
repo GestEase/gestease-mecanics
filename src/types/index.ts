@@ -57,6 +57,8 @@ export interface SpecialThread {
   notes: string
 }
 
+export type UnitSystem = 'metric' | 'imperial'
+
 export type SortDirection = 'asc' | 'desc' | null
 
 export interface SortConfig {
@@ -64,4 +66,50 @@ export interface SortConfig {
   direction: SortDirection
 }
 
-export type TabId = 'imperial' | 'metric' | 'pipe' | 'special' | 'reference'
+export interface HydraulicThread {
+  dashSize: string
+  standard: string
+  nominalSize: string
+  tubeOD: number
+  threadSize: string
+  tpiOrPitch: string
+  sealType: string
+  seatAngle: string
+  majorDia: number
+  pressureRating: number
+  portDepth: number
+  useCase: string
+  notes: string
+}
+
+export interface APIThread {
+  connectionSize: string
+  standard: string
+  category: string
+  apiSpec: string
+  tpi: number
+  taperPerFoot: string
+  threadForm: string
+  connectionOD: number
+  connectionID: number
+  bevelDia: number
+  makeUpTorque: string
+  grade: string
+  useCase: string
+  notes: string
+}
+
+export interface PneumaticThread {
+  portSize: string
+  standard: string
+  threadSpec: string
+  majorDia: number
+  pressureBar: number
+  pressurePSI: number
+  sealMethod: string
+  applications: string
+  brands: string
+  notes: string
+}
+
+export type TabId = 'imperial' | 'metric' | 'pipe' | 'special' | 'hydraulic' | 'api' | 'pneumatic' | 'milling' | 'calculator' | 'reference' | 'conversions'

@@ -1,16 +1,29 @@
 import { useState } from 'react'
 import DataTable from './DataTable'
 import { metricData } from '../data/metric'
-import type { MetricThread } from '../types'
+import type { MetricThread, UnitSystem } from '../types'
 
-interface Props { search: string }
+const MM = 25.4
 
-export default function MetricTab({ search }: Props) {
+interface Props { search: string; units: UnitSystem }
+
+export default function MetricTab({ search, units }: Props) {
   const [seriesFilter, setSeriesFilter] = useState<'ALL' | 'Coarse' | 'Fine'>('ALL')
+  const isMm = units === 'metric'
 
   const data = seriesFilter === 'ALL'
     ? metricData
     : metricData.filter(r => r.series === seriesFilter)
+
+  const fmtMm = (v: unknown) => {
+    const n = Number(v)
+    return <span className="font-mono">{isMm ? n.toFixed(2) : (n / MM).toFixed(4)}</span>
+  }
+
+  const fmtMmBold = (v: unknown) => {
+    const n = Number(v)
+    return <span className="font-mono font-semibold">{isMm ? String(n) : (n / MM).toFixed(4)}</span>
+  }
 
   const columns = [
     { key: 'tapSize' as const, label: 'Tap Size', render: (v: unknown) => <span className="font-mono font-bold text-metric">{String(v)}</span> },
@@ -19,13 +32,18 @@ export default function MetricTab({ search }: Props) {
         {String(v)}
       </span>
     )},
-    { key: 'pitch' as const, label: 'Pitch (mm)', align: 'right' as const },
-    { key: 'tapDrillMm' as const, label: 'Tap Drill (mm)', align: 'right' as const, render: (v: unknown) => <span className="font-mono font-semibold">{String(v)}</span> },
+    { key: 'pitch' as const, label: isMm ? 'Pitch (mm)' : 'Pitch (in)', align: 'right' as const, render: (v: unknown) => {
+      const n = Number(v)
+      return <span className="font-mono">{isMm ? String(n) : (n / MM).toFixed(4)}</span>
+    }},
+    { key: 'tapDrillMm' as const, label: isMm ? 'Tap Drill (mm)' : 'Tap Drill (in)', align: 'right' as const, render: fmtMmBold },
     { key: 'nearestFraction' as const, label: 'Nearest Frac.' },
-    { key: 'decimalIn' as const, label: 'Decimal (in)', align: 'right' as const, render: (v: unknown) => <span className="font-mono">{Number(v).toFixed(4)}</span> },
-    { key: 'minorDia' as const, label: 'Minor \u00d8 (mm)', align: 'right' as const, render: (v: unknown) => <span className="font-mono">{Number(v).toFixed(3)}</span> },
-    { key: 'majorDia' as const, label: 'Major \u00d8 (mm)', align: 'right' as const },
-    { key: 'threadDepth' as const, label: 'Depth (mm)', align: 'right' as const },
+    { key: 'minorDia' as const, label: isMm ? 'Minor Ø (mm)' : 'Minor Ø (in)', align: 'right' as const, render: fmtMm },
+    { key: 'majorDia' as const, label: isMm ? 'Major Ø (mm)' : 'Major Ø (in)', align: 'right' as const, render: (v: unknown) => {
+      const n = Number(v)
+      return <span className="font-mono">{isMm ? String(n) : (n / MM).toFixed(4)}</span>
+    }},
+    { key: 'threadDepth' as const, label: isMm ? 'Depth (mm)' : 'Depth (in)', align: 'right' as const, render: fmtMm },
     { key: 'notes' as const, label: 'Notes' },
   ]
 
