@@ -110,7 +110,13 @@ export default function App() {
 
       {/* Footer */}
       <footer className="sticky bottom-0 z-10 bg-steel-900 border-t border-steel-800 px-4 py-2 text-center text-xs text-steel-600">
-        GestEase Technologie Inc.
+        <a href="https://gestease.ca" target="_blank" rel="noopener noreferrer" className="hover:text-steel-400 transition-colors">
+          GestEase Technologie Inc.
+        </a>
+        <span className="mx-2">·</span>
+        <a href="https://gestease.ca" target="_blank" rel="noopener noreferrer" className="hover:text-steel-400 transition-colors">
+          ERP &amp; IoT pour l'industrie manufacturiere
+        </a>
       </footer>
     </div>
   )

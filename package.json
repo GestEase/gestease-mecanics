@@ -1,6 +1,6 @@
 {
-  "name": "devopsweb-mecanics",
-  "private": true,
+  "name": "gestease-mecanics",
+  "private": false,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
