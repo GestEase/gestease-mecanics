@@ -1,0 +1,73 @@
+name: Deploy Mecanics Production
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches: [ "master" ]
+    paths:
+      - 'src/**'
+      - 'Dockerfile'
+      - 'nginx/**'
+      - 'package.json'
+      - 'vite.config.ts'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: gestease/gestease-mecanics
+
+jobs:
+  # JOB 1 : CONSTRUIRE L'IMAGE ET L'ENVOYER AU REGISTRE GITHUB
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Connexion au Registre GitHub
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Construction et Push Docker
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      - name: Install Trivy
+        run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+
+      - name: Scan vulnerabilites Docker (Trivy)
+        run: trivy image --format table --exit-code 1 --severity CRITICAL --ignore-unfixed ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+  # JOB 2 : CONNECTER AU VPS ET METTRE À JOUR
+  deploy-to-vps:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Connexion SSH et Mise à jour
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VPS_IP }}
+          username: root
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: |
+            cd /opt/gestease
+
+            echo "⬇️ Téléchargement de la nouvelle image Mecanics..."
+            docker compose pull gestease-mecanics
+
+            echo "🔄 Redémarrage du conteneur Mecanics..."
+            docker compose up -d gestease-mecanics
+
+            echo "🧹 Nettoyage des vieilles images..."
+            docker image prune -f
