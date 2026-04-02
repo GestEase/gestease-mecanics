@@ -69,5 +69,8 @@ jobs:
             echo "🔄 Redémarrage du conteneur Mecanics..."
             docker compose up -d gestease-mecanics
 
+            echo "🔄 Reload nginx pour prise en compte du upstream..."
+            docker compose exec -T nginx-proxy nginx -s reload
+
             echo "🧹 Nettoyage des vieilles images..."
             docker image prune -f
