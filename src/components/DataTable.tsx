@@ -91,9 +91,12 @@ export default function DataTable<T extends object>({
                 className={`px-3 py-2.5 font-medium whitespace-nowrap text-xs uppercase tracking-wider ${
                   col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'
                 } ${col.sortable !== false ? 'cursor-pointer select-none' : ''}`}
-                style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' }}
+                style={{
+                  color: 'var(--text-secondary)',
+                  borderBottom: '1px solid var(--border)',
+                  ...(col.width ? { width: col.width } : {}),
+                }}
                 onClick={() => col.sortable !== false && handleSort(col.key)}
-                {...(col.width ? { style: { width: col.width, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' } } : {})}
               >
                 {col.label}
                 {col.sortable !== false && <SortIcon col={col.key} />}
