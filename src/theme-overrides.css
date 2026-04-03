@@ -1,0 +1,479 @@
+/* =========================================
+   A/B THEME OVERRIDES
+   Appliquées via classe sur <html>
+   Le défaut (.theme-gold) utilise les valeurs :root
+   ========================================= */
+
+/* Theme Gold — neutres tiédis + contraste texte corrigé */
+.theme-gold {
+  /* Neutres chauds pour harmoniser avec l'or (règle 60-30-10) */
+  --bg: #FAF8F5;
+  --border: #D9D3CB;
+  --muted: #F5F2ED;
+  /* Contraste WCAG : noir sur or = 5.5:1 (vs blanc = 2.3:1) */
+  --text-on-accent: #1C1C1C;
+}
+
+/* Theme Ocean Blue — corporate, confiance */
+.theme-ocean {
+  --brand-gold: #3B82F6;
+  --brand-gold-dark: #2563EB;
+  --brand-green-dark: #0F1E33;
+  --brand-green-alt: #122A4A;
+  --accent: #3B82F6;
+  --accent-hover: #2563EB;
+  --focus-ring: #3B82F6;
+  --active-background: #3B82F6;
+}
+
+/* Theme Forest Green — croissance, écologique */
+.theme-forest {
+  --brand-gold: #10B981;
+  --brand-gold-dark: #059669;
+  /* Les verts de fond restent naturels — ils matchent l'accent vert */
+  --accent: #10B981;
+  --accent-hover: #059669;
+  --focus-ring: #10B981;
+  --active-background: #10B981;
+}
+
+/* Theme Royal Purple — moderne, innovant */
+.theme-royal {
+  --brand-gold: #8B5CF6;
+  --brand-gold-dark: #7C3AED;
+  --brand-green-dark: #1A0F2E;
+  --brand-green-alt: #231247;
+  --accent: #8B5CF6;
+  --accent-hover: #7C3AED;
+  --focus-ring: #8B5CF6;
+  --active-background: #8B5CF6;
+}
+
+/* Theme Coral Sunset — énergique, chaleureux */
+.theme-coral {
+  --brand-gold: #F97316;
+  --brand-gold-dark: #EA580C;
+  --brand-green-dark: #2E1A0F;
+  --brand-green-alt: #3A2212;
+  --accent: #F97316;
+  --accent-hover: #EA580C;
+  --focus-ring: #F97316;
+  --active-background: #F97316;
+  --text-on-accent: #1C1C1C; /* Contraste : noir sur orange = ~4.6:1 */
+}
+
+/* Theme Slate Minimal — sobre, sophistiqué */
+.theme-slate {
+  --brand-gold: #64748B;
+  --brand-gold-dark: #475569;
+  --brand-green-dark: #1E293B;
+  --brand-green-alt: #334155;
+  --accent: #64748B;
+  --accent-hover: #475569;
+  --focus-ring: #64748B;
+  --active-background: #64748B;
+}
+
+/* Theme Rose Modern — créatif, dynamique */
+.theme-rose {
+  --brand-gold: #F43F5E;
+  --brand-gold-dark: #E11D48;
+  --brand-green-dark: #2E0F1A;
+  --brand-green-alt: #47122A;
+  --accent: #F43F5E;
+  --accent-hover: #E11D48;
+  --focus-ring: #F43F5E;
+  --active-background: #F43F5E;
+}
+
+/* Theme Teal Fresh — frais, équilibré */
+.theme-teal {
+  --brand-gold: #14B8A6;
+  --brand-gold-dark: #0D9488;
+  --brand-green-dark: #0F2E2A;
+  --brand-green-alt: #123A34;
+  --accent: #14B8A6;
+  --accent-hover: #0D9488;
+  --focus-ring: #14B8A6;
+  --active-background: #14B8A6;
+  --text-on-accent: #1C1C1C; /* Contraste : noir sur teal = ~4.5:1 */
+}
+
+/* Theme Amber Honey — miel, terroir, artisanat (chaud) */
+.theme-amber {
+  --brand-gold: #D97706;
+  --brand-gold-dark: #B45309;
+  --brand-green-dark: #2E210F;
+  --brand-green-alt: #3A2B12;
+  --accent: #D97706;
+  --accent-hover: #B45309;
+  --focus-ring: #D97706;
+  --active-background: #D97706;
+  --text-on-accent: #1C1C1C; /* Contraste : noir sur ambre = ~4.8:1 */
+}
+
+/* Theme Crimson Bold — audace, passion, leadership (chaud) */
+.theme-crimson {
+  --brand-gold: #DC2626;
+  --brand-gold-dark: #B91C1C;
+  --brand-green-dark: #2E0F0F;
+  --brand-green-alt: #471212;
+  --accent: #DC2626;
+  --accent-hover: #B91C1C;
+  --focus-ring: #DC2626;
+  --active-background: #DC2626;
+}
+
+/* Theme Indigo Deep — profond, premium, tech (froid) */
+.theme-indigo {
+  --brand-gold: #4F46E5;
+  --brand-gold-dark: #4338CA;
+  --brand-green-dark: #0F0F2E;
+  --brand-green-alt: #171747;
+  --accent: #4F46E5;
+  --accent-hover: #4338CA;
+  --focus-ring: #4F46E5;
+  --active-background: #4F46E5;
+}
+
+/* Theme Sky Light — aérien, accessible, clarté (froid) */
+.theme-sky {
+  --brand-gold: #0EA5E9;
+  --brand-gold-dark: #0284C7;
+  --brand-green-dark: #0F1E2E;
+  --brand-green-alt: #12304A;
+  --accent: #0EA5E9;
+  --accent-hover: #0284C7;
+  --focus-ring: #0EA5E9;
+  --active-background: #0EA5E9;
+}
+
+/* ---- Dark mode : classe .dark ---- */
+.dark.theme-gold {
+  /* Réinitialiser les neutres chauds en dark mode */
+  --bg: #1A1C20;
+  --border: #32353E;
+  --muted: #2A2D35;
+  --text-on-accent: #FFFFFF;
+}
+
+.dark.theme-ocean {
+  --accent: #60A5FA;
+  --accent-hover: #3B82F6;
+  --brand-gold: #60A5FA;
+  --brand-gold-dark: #3B82F6;
+  --brand-green-dark: #0F1E33;
+  --brand-green-alt: #122A4A;
+  --active-background: #1E3A5F;
+}
+
+.dark.theme-forest {
+  --accent: #34D399;
+  --accent-hover: #10B981;
+  --brand-gold: #34D399;
+  --brand-gold-dark: #10B981;
+  --active-background: #1A3B2E;
+}
+
+.dark.theme-royal {
+  --accent: #A78BFA;
+  --accent-hover: #8B5CF6;
+  --brand-gold: #A78BFA;
+  --brand-gold-dark: #8B5CF6;
+  --brand-green-dark: #1A0F2E;
+  --brand-green-alt: #231247;
+  --active-background: #2E1F5E;
+}
+
+.dark.theme-coral {
+  --accent: #FB923C;
+  --accent-hover: #F97316;
+  --brand-gold: #FB923C;
+  --brand-gold-dark: #F97316;
+  --brand-green-dark: #2E1A0F;
+  --brand-green-alt: #3A2212;
+  --active-background: #5F2E1E;
+}
+
+.dark.theme-slate {
+  --accent: #94A3B8;
+  --accent-hover: #64748B;
+  --brand-gold: #94A3B8;
+  --brand-gold-dark: #64748B;
+  --brand-green-dark: #1E293B;
+  --brand-green-alt: #334155;
+  --active-background: #334155;
+}
+
+.dark.theme-rose {
+  --accent: #FB7185;
+  --accent-hover: #F43F5E;
+  --brand-gold: #FB7185;
+  --brand-gold-dark: #F43F5E;
+  --brand-green-dark: #2E0F1A;
+  --brand-green-alt: #47122A;
+  --active-background: #5E1F3E;
+}
+
+.dark.theme-teal {
+  --accent: #2DD4BF;
+  --accent-hover: #14B8A6;
+  --brand-gold: #2DD4BF;
+  --brand-gold-dark: #14B8A6;
+  --brand-green-dark: #0F2E2A;
+  --brand-green-alt: #123A34;
+  --active-background: #1A3B35;
+}
+
+.dark.theme-amber {
+  --accent: #FBBF24;
+  --accent-hover: #D97706;
+  --brand-gold: #FBBF24;
+  --brand-gold-dark: #D97706;
+  --brand-green-dark: #2E210F;
+  --brand-green-alt: #3A2B12;
+  --active-background: #5F4B1E;
+}
+
+.dark.theme-crimson {
+  --accent: #F87171;
+  --accent-hover: #DC2626;
+  --brand-gold: #F87171;
+  --brand-gold-dark: #DC2626;
+  --brand-green-dark: #2E0F0F;
+  --brand-green-alt: #471212;
+  --active-background: #5E1F1F;
+}
+
+.dark.theme-indigo {
+  --accent: #818CF8;
+  --accent-hover: #4F46E5;
+  --brand-gold: #818CF8;
+  --brand-gold-dark: #4F46E5;
+  --brand-green-dark: #0F0F2E;
+  --brand-green-alt: #171747;
+  --active-background: #1F1F5E;
+}
+
+.dark.theme-sky {
+  --accent: #38BDF8;
+  --accent-hover: #0EA5E9;
+  --brand-gold: #38BDF8;
+  --brand-gold-dark: #0EA5E9;
+  --brand-green-dark: #0F1E2E;
+  --brand-green-alt: #12304A;
+  --active-background: #1E3A5F;
+}
+
+/* =========================================
+   GEN X THEMES — 70s · 80s · 90s Energy
+   ========================================= */
+
+/* Theme Hot Rod — Hot Rod · Flames · Route 66 */
+.theme-hotrod {
+  --brand-gold:       #E85D04;
+  --brand-gold-dark:  #C44D03;
+  --brand-green-dark: #2E1A0F;
+  --brand-green-alt:  #3A2212;
+  --accent:           #E85D04;
+  --accent-hover:     #C44D03;
+  --focus-ring:       #E85D04;
+  --active-background:#E85D04;
+  --bg:               #FAF7F4;
+  --border:           #DDD0C4;
+  --muted:            #F5EFE8;
+  --text-on-accent:   #FFFFFF;
+}
+
+.dark.theme-hotrod {
+  --accent:           #FF7A2E;
+  --accent-hover:     #E85D04;
+  --brand-gold:       #FF7A2E;
+  --brand-gold-dark:  #E85D04;
+  --brand-green-dark: #2E1A0F;
+  --brand-green-alt:  #3A2212;
+  --active-background:#5F2A10;
+  --bg:               #1A0F07;
+  --border:           #3A2212;
+  --muted:            #261508;
+}
+
+/* Theme Formula — F1 · Ferrari · Monaco · Podium */
+.theme-formula {
+  --brand-gold:       #E8001A;
+  --brand-gold-dark:  #BB0015;
+  --brand-green-dark: #2E0F0F;
+  --brand-green-alt:  #471212;
+  --accent:           #E8001A;
+  --accent-hover:     #BB0015;
+  --focus-ring:       #E8001A;
+  --active-background:#E8001A;
+  --bg:               #FAF5F5;
+  --border:           #DDC8C8;
+  --muted:            #F5EDED;
+  --text-on-accent:   #FFFFFF;
+}
+
+.dark.theme-formula {
+  --accent:           #FF4455;
+  --accent-hover:     #E8001A;
+  --brand-gold:       #FF4455;
+  --brand-gold-dark:  #E8001A;
+  --brand-green-dark: #2E0F0F;
+  --brand-green-alt:  #471212;
+  --active-background:#5E1F1F;
+  --bg:               #1A0707;
+  --border:           #3A1212;
+  --muted:            #260909;
+}
+
+/* Theme Garage — Motocross · Kawasaki · 90s · Neon */
+.theme-garage {
+  --brand-gold:       #00A854;
+  --brand-gold-dark:  #008542;
+  --brand-green-dark: #0F2E1A;
+  --brand-green-alt:  #123A22;
+  --accent:           #00A854;
+  --accent-hover:     #008542;
+  --focus-ring:       #00A854;
+  --active-background:#00A854;
+  --bg:               #F5FAF6;
+  --border:           #C4DDC9;
+  --muted:            #EBF5EE;
+  --text-on-accent:   #FFFFFF;
+}
+
+.dark.theme-garage {
+  --accent:           #00E676;
+  --accent-hover:     #00C853;
+  --brand-gold:       #00E676;
+  --brand-gold-dark:  #00C853;
+  --brand-green-dark: #0D1810;
+  --brand-green-alt:  #122418;
+  --active-background:#1A3B28;
+  --bg:               #080F0A;
+  --border:           #12301A;
+  --muted:            #0F1E12;
+}
+
+/* Theme Synthwave — Rock · 80s · Blade Runner · Tron */
+.theme-synthwave {
+  --brand-gold:       #7B2FBE;
+  --brand-gold-dark:  #6321A0;
+  --brand-green-dark: #1A0F2E;
+  --brand-green-alt:  #231247;
+  --accent:           #7B2FBE;
+  --accent-hover:     #6321A0;
+  --focus-ring:       #7B2FBE;
+  --active-background:#7B2FBE;
+  --bg:               #F8F5FA;
+  --border:           #CEBEDD;
+  --muted:            #F0EAF5;
+  --text-on-accent:   #FFFFFF;
+}
+
+.dark.theme-synthwave {
+  --accent:           #A855F7;
+  --accent-hover:     #7B2FBE;
+  --brand-gold:       #A855F7;
+  --brand-gold-dark:  #7B2FBE;
+  --brand-green-dark: #1A0F2E;
+  --brand-green-alt:  #231247;
+  --active-background:#2E1F5E;
+  --bg:               #0F0A1E;
+  --border:           #2A1F42;
+  --muted:            #1A1230;
+  --surface:          #1A1530;
+}
+
+/* Theme Marvel — Comics · Iron Man · Captain America */
+.theme-marvel {
+  --brand-gold:       #D90429;
+  --brand-gold-dark:  #AE0320;
+  --brand-green-dark: #2E0F14;
+  --brand-green-alt:  #47121C;
+  --accent:           #D90429;
+  --accent-hover:     #AE0320;
+  --focus-ring:       #D90429;
+  --active-background:#D90429;
+  --bg:               #FAF5F6;
+  --border:           #DDC8CB;
+  --muted:            #F5EDEE;
+  --text-on-accent:   #FFFFFF;
+}
+
+.dark.theme-marvel {
+  --accent:           #F87171;
+  --accent-hover:     #D90429;
+  --brand-gold:       #F87171;
+  --brand-gold-dark:  #D90429;
+  --brand-green-dark: #2E0F14;
+  --brand-green-alt:  #47121C;
+  --active-background:#5E1F24;
+  --bg:               #1A0709;
+  --border:           #3A1215;
+  --muted:            #26090C;
+}
+
+/* Theme Harley — Harley-Davidson · Bar & Shield · Open Road */
+.theme-harley {
+  --brand-gold:       #FC4C02;
+  --brand-gold-dark:  #D43E02;
+  --brand-green-dark: #1C1008;
+  --brand-green-alt:  #2E1A0A;
+  --accent:           #FC4C02;
+  --accent-hover:     #D43E02;
+  --focus-ring:       #FC4C02;
+  --active-background:#FC4C02;
+  --bg:               #FAF6F2;
+  --border:           #DDD0C0;
+  --muted:            #F5EDE0;
+  --text-on-accent:   #FFFFFF;
+}
+
+.dark.theme-harley {
+  --accent:           #FF7A4D;
+  --accent-hover:     #FC4C02;
+  --brand-gold:       #FF7A4D;
+  --brand-gold-dark:  #FC4C02;
+  --brand-green-dark: #1C1008;
+  --brand-green-alt:  #2E1A0A;
+  --active-background:#5F2810;
+  --bg:               #150C04;
+  --border:           #3A200A;
+  --muted:            #221005;
+}
+
+/* Theme Forge — Acier rouge vif · Trempe · Ventre de pigeon · Étincelle */
+.theme-forge {
+  --brand-gold:       #E8420A;   /* Acier rouge vif — métal à ~900°C */
+  --brand-gold-dark:  #C43608;
+  --brand-green-dark: #1C1A18;   /* Charbon de forge */
+  --brand-green-alt:  #2A2520;
+  --accent:           #E8420A;
+  --accent-hover:     #C43608;
+  --focus-ring:       #E8420A;
+  --active-background:#E8420A;
+  --bg:               #F7F5F2;   /* Gris clair légèrement chaud — métal brut non chauffé */
+  --border:           #D4CEC6;
+  --muted:            #EDE9E4;
+  --text-on-accent:   #FFFFFF;
+}
+
+.dark.theme-forge {
+  --accent:           #FF5C24;   /* Braise vive — plus lumineux sur fond sombre */
+  --accent-hover:     #E8420A;
+  --brand-gold:       #FF5C24;
+  --brand-gold-dark:  #E8420A;
+  --brand-green-dark: #1C1A18;
+  --brand-green-alt:  #2A2520;
+  --active-background:#5C2010;
+  --bg:               #0E0C0A;   /* Nuit de forge — noir charbonneux */
+  --surface:          #1C1A18;
+  --border:           #3A3430;
+  --muted:            #252220;
+}
+
+/* @media (prefers-color-scheme: dark) supprimé —
+   Le dark mode est désormais contrôlé uniquement par la classe .dark
+   via le toggle dans ThemeSwitcher + anti-flash script dans layout.tsx */

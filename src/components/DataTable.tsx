@@ -69,7 +69,7 @@ export default function DataTable<T extends object>({
   }
 
   const SortIcon = ({ col }: { col: string }) => {
-    if (sort.key !== col) return <span className="text-steel-700 ml-1">{'\u21C5'}</span>
+    if (sort.key !== col) return <span style={{ color: 'var(--border)', marginLeft: '4px' }}>{'\u21C5'}</span>
     return (
       <span className="ml-1" style={{ color: `var(--color-${accentColor})` }}>
         {sort.direction === 'asc' ? '\u25b2' : '\u25bc'}
@@ -78,18 +78,22 @@ export default function DataTable<T extends object>({
   }
 
   return (
-    <div className="table-wrap rounded-lg border border-steel-800 bg-steel-900/50 max-h-[calc(100vh-220px)] overflow-auto">
-      <table className="w-full text-sm">
-        <thead className="sticky top-0 z-10 bg-steel-900 shadow-[0_1px_0_0_var(--color-steel-800)]">
+    <div
+      className="table-wrap rounded-lg max-h-[calc(100vh-220px)] overflow-auto"
+      style={{ border: '1px solid var(--border)', background: 'var(--surface)' }}
+    >
+      <table className="w-full text-sm border-collapse">
+        <thead className="sticky top-0 z-10" style={{ background: 'var(--muted)' }}>
           <tr>
             {columns.map(col => (
               <th
                 key={col.key}
-                className={`px-3 py-2.5 font-semibold text-steel-300 whitespace-nowrap bg-steel-900 ${
+                className={`px-3 py-2.5 font-medium whitespace-nowrap text-xs uppercase tracking-wider ${
                   col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'
-                } ${col.sortable !== false ? 'cursor-pointer select-none hover:text-steel-100' : ''}`}
-                style={col.width ? { width: col.width } : undefined}
+                } ${col.sortable !== false ? 'cursor-pointer select-none' : ''}`}
+                style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' }}
                 onClick={() => col.sortable !== false && handleSort(col.key)}
+                {...(col.width ? { style: { width: col.width, color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' } } : {})}
               >
                 {col.label}
                 {col.sortable !== false && <SortIcon col={col.key} />}
@@ -100,7 +104,7 @@ export default function DataTable<T extends object>({
         <tbody>
           {sorted.length === 0 ? (
             <tr>
-              <td colSpan={columns.length} className="px-3 py-8 text-center text-steel-500">
+              <td colSpan={columns.length} className="px-3 py-8 text-center text-sm" style={{ color: 'var(--text-secondary)' }}>
                 Aucun resultat pour &laquo; {search} &raquo;
               </td>
             </tr>
@@ -113,8 +117,12 @@ export default function DataTable<T extends object>({
                   <tr key={`section-${i}`}>
                     <td
                       colSpan={columns.length}
-                      className="px-3 py-2 text-xs font-bold uppercase tracking-wider border-t border-steel-700"
-                      style={{ color: `var(--color-${accentColor})`, background: `color-mix(in srgb, var(--color-${accentColor}) 6%, transparent)` }}
+                      className="px-3 py-2 text-xs font-bold uppercase tracking-wider"
+                      style={{
+                        color: `var(--color-${accentColor})`,
+                        background: `color-mix(in srgb, var(--color-${accentColor}) 8%, transparent)`,
+                        borderBottom: '1px solid var(--border)',
+                      }}
                     >
                       {section}
                     </td>
@@ -122,10 +130,11 @@ export default function DataTable<T extends object>({
                 ),
                 <tr
                   key={i}
-                  className={`border-t border-steel-800/50 transition-colors hover:bg-steel-800/50 ${
-                    highlight ? 'bg-steel-800/30' : ''
-                  }`}
-                  style={highlight ? { borderLeft: `3px solid var(--color-${accentColor})` } : undefined}
+                  className="transition-colors hover-row"
+                  style={{
+                    borderBottom: '1px solid var(--border)',
+                    ...(highlight ? { borderLeft: `3px solid var(--color-${accentColor})` } : {}),
+                  }}
                 >
                   {columns.map(col => {
                     const val = getVal(row, col.key)
@@ -134,7 +143,8 @@ export default function DataTable<T extends object>({
                         key={col.key}
                         className={`px-3 py-2 ${
                           col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : 'text-left'
-                        } ${col.key === 'notes' ? 'text-steel-500 text-xs' : 'text-steel-200'}`}
+                        }`}
+                        style={{ color: col.key === 'notes' ? 'var(--text-secondary)' : 'var(--text)', fontSize: col.key === 'notes' ? '0.8rem' : undefined }}
                       >
                         {col.render ? col.render(val, row) : String(val ?? '')}
                       </td>
@@ -146,7 +156,7 @@ export default function DataTable<T extends object>({
           )}
         </tbody>
       </table>
-      <div className="px-3 py-2 border-t border-steel-800 text-xs text-steel-500 flex justify-between">
+      <div className="px-3 py-2 text-xs flex justify-between" style={{ borderTop: '1px solid var(--border)', color: 'var(--text-secondary)' }}>
         <span>{sorted.length} entrees{search ? ' (filtre)' : ''}</span>
         {footerNote !== null && <span>{footerNote ?? '75% engagement standard'}</span>}
       </div>

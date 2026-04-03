@@ -125,7 +125,7 @@ function MillingCalculator({ isIn }: { isIn: boolean }) {
   return (
     <div className="grid lg:grid-cols-2 gap-4">
       {/* Inputs */}
-      <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4 space-y-4">
+      <div className="card rounded-lg p-4 space-y-4">
         <h3 className="text-sm font-bold text-imperial">Parametres Fraisage</h3>
 
         {/* Mill type */}
@@ -149,7 +149,7 @@ function MillingCalculator({ isIn }: { isIn: boolean }) {
         <div>
           <label className="block text-xs text-steel-400 mb-1">Materiau</label>
           <select value={materialIdx} onChange={e => setMaterialIdx(Number(e.target.value))}
-            className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 focus:outline-none focus:border-imperial">
+            className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none">
             {groupedMats.map(g => (
               <optgroup key={g.cat} label={g.cat}>
                 {g.items.map(i => <option key={i.idx} value={i.idx}>{i.name}</option>)}
@@ -164,24 +164,24 @@ function MillingCalculator({ isIn }: { isIn: boolean }) {
           <div>
             <label className="block text-xs text-steel-400 mb-1">Diametre fraise ({uLabel})</label>
             <input type="number" step={isIn ? '0.001' : '1'} value={dDisplay} onChange={e => handleD(e.target.value)}
-              className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 focus:outline-none focus:border-imperial" />
+              className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none" />
             <div className="mt-0.5 text-xs text-steel-600 font-mono">= {isIn ? `${dMm.toFixed(1)} mm` : `${mmToIn(dMm).toFixed(3)} in`}</div>
           </div>
           <div>
             <label className="block text-xs text-steel-400 mb-1">Nombre de dents</label>
             <input type="number" value={teeth} onChange={e => setTeeth(e.target.value)}
-              className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 focus:outline-none focus:border-imperial" />
+              className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none" />
           </div>
           <div>
             <label className="block text-xs text-steel-400 mb-1">Prof. de passe ap ({uLabel})</label>
             <input type="number" step={isIn ? '0.001' : '0.1'} value={apDisplay} onChange={e => handleAp(e.target.value)}
-              className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 focus:outline-none focus:border-imperial" />
+              className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none" />
             <div className="mt-0.5 text-xs text-steel-600 font-mono">= {isIn ? `${apMm.toFixed(1)} mm` : `${mmToIn(apMm).toFixed(3)} in`}</div>
           </div>
           <div>
             <label className="block text-xs text-steel-400 mb-1">Largeur de passe ae ({uLabel})</label>
             <input type="number" step={isIn ? '0.001' : '0.1'} value={aeDisplay} onChange={e => handleAe(e.target.value)}
-              className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 focus:outline-none focus:border-imperial" />
+              className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none" />
             <div className="mt-0.5 text-xs text-steel-600 font-mono">= {isIn ? `${aeMm.toFixed(1)} mm` : `${mmToIn(aeMm).toFixed(3)} in`}</div>
           </div>
         </div>
@@ -225,7 +225,7 @@ function MillingCalculator({ isIn }: { isIn: boolean }) {
 
       {/* Results */}
       <div className="space-y-4">
-        <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4">
+        <div className="card rounded-lg p-4">
           <h3 className="text-sm font-bold text-imperial mb-3">Resultats</h3>
           {dMm <= 0 ? (
             <p className="text-steel-500 text-sm py-4 text-center">Entre les parametres pour calculer</p>
@@ -285,7 +285,7 @@ function FaceMillTable({ isIn }: { isIn: boolean }) {
             }`}>{t === 'ALL' ? 'Tous' : t}</button>
         ))}
       </div>
-      <div className="table-wrap rounded-lg border border-steel-800 bg-steel-900/50 max-h-[calc(100vh-280px)] overflow-auto">
+      <div className="table-wrap card rounded-lg max-h-[calc(100vh-280px)] overflow-auto">
         <table className="w-full text-sm">
           <thead className="sticky top-0 z-10 bg-steel-900 shadow-[0_1px_0_0_var(--color-steel-800)]">
             <tr>
@@ -334,7 +334,7 @@ function FaceMillTable({ isIn }: { isIn: boolean }) {
 /* ==================== INSERT GEOMETRY TABLE ==================== */
 function InsertTable() {
   return (
-    <div className="table-wrap rounded-lg border border-steel-800 bg-steel-900/50 max-h-[calc(100vh-220px)] overflow-auto">
+    <div className="table-wrap card rounded-lg max-h-[calc(100vh-220px)] overflow-auto">
       <table className="w-full text-sm">
         <thead className="sticky top-0 z-10 bg-steel-900 shadow-[0_1px_0_0_var(--color-steel-800)]">
           <tr>
@@ -377,7 +377,7 @@ function InsertTable() {
 /* ==================== GRADE TABLE ==================== */
 function GradeTable() {
   return (
-    <div className="table-wrap rounded-lg border border-steel-800 bg-steel-900/50 max-h-[calc(100vh-220px)] overflow-auto">
+    <div className="table-wrap card rounded-lg max-h-[calc(100vh-220px)] overflow-auto">
       <table className="w-full text-sm">
         <thead className="sticky top-0 z-10 bg-steel-900 shadow-[0_1px_0_0_var(--color-steel-800)]">
           <tr>

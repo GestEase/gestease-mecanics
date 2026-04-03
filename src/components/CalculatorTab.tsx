@@ -139,7 +139,7 @@ export default function CalculatorTab({ units }: Props) {
 
       <div className="grid lg:grid-cols-2 gap-4">
         {/* LEFT — Inputs */}
-        <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4 space-y-4">
+        <div className="card rounded-lg p-4 space-y-4">
           <h3 className="text-sm font-bold text-ref">Parametres</h3>
 
           {/* Material */}
@@ -148,7 +148,7 @@ export default function CalculatorTab({ units }: Props) {
             <select
               value={materialIdx}
               onChange={e => setMaterialIdx(Number(e.target.value))}
-              className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 focus:outline-none focus:border-ref"
+              className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none"
             >
               {groupedMaterials.map(g => (
                 <optgroup key={g.category} label={g.category}>
@@ -174,7 +174,7 @@ export default function CalculatorTab({ units }: Props) {
                 value={tapSearch}
                 onChange={e => { setTapSearch(e.target.value); setTapIdx(-1) }}
                 placeholder="Rechercher un taraud (ex: M10, 1/4, 3/8...)"
-                className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 placeholder-steel-500 focus:outline-none focus:border-ref"
+                className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none"
               />
               {tapSearch && filteredTaps.length > 0 && tapIdx < 0 && (
                 <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-steel-800 border border-steel-700 rounded-lg max-h-48 overflow-auto">
@@ -214,7 +214,7 @@ export default function CalculatorTab({ units }: Props) {
               value={customDiameter}
               onChange={e => { setCustomDiameter(e.target.value); setTapIdx(-1); setTapSearch('') }}
               placeholder={units === 'metric' ? 'Ex: 8.5' : 'Ex: 0.3346'}
-              className="w-full bg-steel-800 border border-steel-700 rounded-lg px-3 py-2 text-sm text-steel-100 placeholder-steel-500 focus:outline-none focus:border-ref"
+              className="w-full card-inner rounded-lg px-3 py-2 text-sm focus:outline-none"
             />
           </div>
 
@@ -244,7 +244,7 @@ export default function CalculatorTab({ units }: Props) {
 
         {/* RIGHT — Results */}
         <div className="space-y-4">
-          <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4">
+          <div className="card rounded-lg p-4">
             <h3 className="text-sm font-bold text-ref mb-3">Resultats</h3>
             {diameterMm <= 0 ? (
               <p className="text-steel-500 text-sm py-4 text-center">
@@ -281,22 +281,22 @@ export default function CalculatorTab({ units }: Props) {
           </div>
 
           {/* Material quick ref */}
-          <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4">
+          <div className="card rounded-lg p-4">
             <h3 className="text-sm font-bold text-steel-400 mb-2">Plage vitesses — {mat.name}</h3>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="bg-steel-800/50 rounded p-2">
+              <div className="card-inner rounded p-2">
                 <div className="text-steel-500">Percage</div>
                 <div className="font-mono text-steel-200">{fmtSpeedRange(mat.cuttingSpeedDrill)}</div>
               </div>
-              <div className="bg-steel-800/50 rounded p-2">
+              <div className="card-inner rounded p-2">
                 <div className="text-steel-500">Taraudage</div>
                 <div className="font-mono text-steel-200">{fmtSpeedRange(mat.cuttingSpeedTap)}</div>
               </div>
-              <div className="bg-steel-800/50 rounded p-2">
+              <div className="card-inner rounded p-2">
                 <div className="text-steel-500">Chip load (percage)</div>
                 <div className="font-mono text-steel-200">{fmtChipLoad}</div>
               </div>
-              <div className="bg-steel-800/50 rounded p-2">
+              <div className="card-inner rounded p-2">
                 <div className="text-steel-500">Lubrifiant</div>
                 <div className="text-steel-200">{mat.coolant}</div>
               </div>

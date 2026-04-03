@@ -68,7 +68,7 @@ export default function ReferenceTab() {
 
 function Section({ title, color, children }: { title: string; color: string; children: React.ReactNode }) {
   return (
-    <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4">
+    <div className="card rounded-lg p-4">
       <h2 className="text-base font-bold mb-3" style={{ color: `var(--color-${color})` }}>{title}</h2>
       {children}
     </div>
@@ -77,10 +77,10 @@ function Section({ title, color, children }: { title: string; color: string; chi
 
 function FormulaCard({ label, formula, note }: { label: string; formula: string; note: string }) {
   return (
-    <div className="bg-steel-800/50 rounded-lg p-3 border border-steel-700">
-      <div className="text-xs text-steel-400 mb-1">{label}</div>
-      <div className="font-mono text-sm text-steel-100 font-semibold">{formula}</div>
-      <div className="text-xs text-steel-500 mt-1">{note}</div>
+    <div className="card-inner rounded-lg p-3">
+      <div className="text-xs text-xs mb-1" style={{ color: 'var(--text-secondary)' }}>{label}</div>
+      <div className="font-mono text-sm font-semibold" style={{ color: 'var(--text)' }}>{formula}</div>
+      <div className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>{note}</div>
     </div>
   )
 }
@@ -96,27 +96,27 @@ function InfoRow({ label, value }: { label: string; value: string }) {
 
 function DefRow({ term, def }: { term: string; def: string }) {
   return (
-    <div className="flex gap-2 py-1 border-b border-steel-800/50">
+    <div className="flex gap-2 py-1 border-b">
       <span className="text-ref font-mono font-semibold shrink-0 w-28">{term}</span>
-      <span className="text-steel-300">{def}</span>
+      <span className="text-sm" style={{ color: 'var(--text)' }}>{def}</span>
     </div>
   )
 }
 
 function NormRow({ code, norm }: { code: string; norm: string }) {
   return (
-    <div className="flex gap-2 py-1 border-b border-steel-800/50">
+    <div className="flex gap-2 py-1 border-b">
       <span className="text-imperial font-semibold shrink-0 w-28">{code}</span>
-      <span className="text-steel-300 font-mono text-xs">{norm}</span>
+      <span className="font-mono text-xs" style={{ color: 'var(--text)' }}>{norm}</span>
     </div>
   )
 }
 
 function TipRow({ title, tip }: { title: string; tip: string }) {
   return (
-    <div className="flex gap-3 py-2 border-b border-steel-800/50">
+    <div className="flex gap-3 py-2 border-b">
       <span className="text-metric font-semibold shrink-0 w-36">{title}</span>
-      <span className="text-steel-300">{tip}</span>
+      <span className="text-sm" style={{ color: 'var(--text)' }}>{tip}</span>
     </div>
   )
 }

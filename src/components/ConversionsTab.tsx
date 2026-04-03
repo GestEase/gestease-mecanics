@@ -134,7 +134,7 @@ function ConverterCard({ group }: { group: ConvGroup }) {
   const handleClear = () => { setValues({}); setActive(null) }
 
   return (
-    <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4">
+    <div className="card rounded-lg p-4">
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-sm font-bold" style={{ color: `var(--color-${group.color})` }}>{group.name}</h3>
         {Object.keys(values).length > 0 && (
@@ -150,7 +150,7 @@ function ConverterCard({ group }: { group: ConvGroup }) {
               value={values[u.label] ?? ''}
               onChange={e => handleChange(u.label, e.target.value)}
               placeholder="0"
-              className="flex-1 bg-steel-800 border border-steel-700 rounded px-3 py-1.5 text-sm font-mono text-steel-100 placeholder-steel-700 focus:outline-none focus:border-steel-500 transition-colors"
+              className="flex-1 card-inner rounded px-3 py-1.5 text-sm font-mono focus:outline-none transition-colors"
             />
           </div>
         ))}
@@ -184,13 +184,13 @@ function FractionConverter() {
   const decimalToFraction = !isNaN(decVal) && decVal > 0 ? closestFraction(decVal, 64) : null
 
   return (
-    <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4">
+    <div className="card rounded-lg p-4">
       <h3 className="text-sm font-bold text-imperial mb-3">Fraction / Decimal (pouces)</h3>
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-2">
           <label className="block text-xs text-steel-400">Decimal (in)</label>
           <input type="number" step="0.0001" value={decimal} onChange={e => setDecimal(e.target.value)}
-            placeholder="0.3125" className="w-full bg-steel-800 border border-steel-700 rounded px-3 py-1.5 text-sm font-mono text-steel-100 placeholder-steel-700 focus:outline-none focus:border-steel-500" />
+            placeholder="0.3125" className="w-full card-inner rounded px-3 py-1.5 text-sm font-mono focus:outline-none" />
           {decimalToFraction && (
             <div className="text-sm font-mono">
               <span className="text-steel-400">= </span>
@@ -203,7 +203,7 @@ function FractionConverter() {
           <label className="block text-xs text-steel-400">Fraction</label>
           <div className="flex items-center gap-1">
             <input type="number" value={num} onChange={e => setNum(e.target.value)}
-              placeholder="5" className="w-16 bg-steel-800 border border-steel-700 rounded px-2 py-1.5 text-sm font-mono text-steel-100 placeholder-steel-700 focus:outline-none focus:border-steel-500" />
+              placeholder="5" className="w-16 card-inner rounded px-2 py-1.5 text-sm font-mono focus:outline-none" />
             <span className="text-steel-500 text-lg">/</span>
             <select value={den} onChange={e => setDen(e.target.value)}
               className="bg-steel-800 border border-steel-700 rounded px-2 py-1.5 text-sm font-mono text-steel-100 focus:outline-none focus:border-steel-500">
@@ -271,12 +271,12 @@ function DrillGaugeConverter() {
   const match = gauges[q]
 
   return (
-    <div className="bg-steel-900/50 border border-steel-800 rounded-lg p-4">
+    <div className="card rounded-lg p-4">
       <h3 className="text-sm font-bold text-ref mb-3">Drill Gauge (# et lettres)</h3>
       <div className="flex items-center gap-3">
         <input type="text" value={input} onChange={e => setInput(e.target.value)}
           placeholder="Ex: 7, 29, A, Q..."
-          className="w-32 bg-steel-800 border border-steel-700 rounded px-3 py-1.5 text-sm font-mono text-steel-100 placeholder-steel-700 focus:outline-none focus:border-steel-500" />
+          className="w-32 card-inner rounded px-3 py-1.5 text-sm font-mono focus:outline-none" />
         {match !== undefined ? (
           <div className="text-sm font-mono">
             <span className="text-steel-400">#{q} = </span>

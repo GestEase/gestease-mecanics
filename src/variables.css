@@ -1,0 +1,68 @@
+:root {
+  /* =========================================
+     BRAND PALETTE — Brand officiel : Sky Blue
+     ========================================= */
+  --brand-gold:       #0EA5E9;
+  --brand-gold-dark:  #0284C7;
+  --brand-green-dark: #0F1E2E;
+  --brand-green-alt:  #12304A;
+  --brand-text-light: #F4F4F2;
+  --brand-black:      #1C1C1C;
+
+  /* =========================================
+     UI SEMANTICS (Mise à jour pour style Schedule)
+     ========================================= */
+  
+  /* FONDS */
+  --bg: #F5F7FA;
+  --surface: #FFFFFF; /* Retour au blanc pur pour plus de netteté style dashboard */
+  
+  /* TEXTES */
+  --text: #1E1E1E;
+  --text-secondary: #687280;
+  
+  /* BORDURES */
+  --border: #D1D5DB;
+  --muted: #F3F4F6; /* Un gris très léger pour les fonds alternés */
+
+  /* ACTIONS PRINCIPALES (Gold devient le standard) */
+  --primary: #334155;        /* Reste Slate pour les éléments neutres/sidebar */
+  --primary-hover: #1E293B;
+  
+  /* Accent = Sky Blue (brand officiel marketing) */
+  --accent: #0EA5E9;
+  --accent-hover: #0284C7;
+  --text-on-accent: #FFFFFF;
+
+  /* ETATS */
+  --success: #10B981;        /* Ajusté pour être un vert plus vif/moderne */
+  --success-hover: #059669;
+  --warning: #F59E0B;
+  --warning-hover: #D97706;
+  --error: #EF4444;
+  --error-hover: #DC2626;
+  --focus-ring: #0EA5E9;
+
+  --active-background: #0EA5E9;
+
+  /* GEOMETRIE (Compact) */
+  --radius: 6px;             /* CHANGÉ de 12px à 6px */
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* Ombre plus subtile */
+}
+
+/* DARK THEME — contrôlé uniquement par la classe .dark sur <html> */
+.dark {
+  --bg: #1A1C20; 
+  --surface: #24262C; 
+  --text: #F5F5F5; 
+  --text-secondary: #A7A7A7; 
+  --border: #32353E; 
+  --muted: #2A2D35; /* Légèrement plus clair que la surface */
+  
+  /* En Dark, l'accent reste Sky Blue */
+  --accent: #38BDF8;
+  --accent-hover: #0EA5E9;
+  --text-on-accent: #FFFFFF;
+
+  --active-background: #2E4562; /* On garde le bleu sombre pour les items de menu actifs */
+}
