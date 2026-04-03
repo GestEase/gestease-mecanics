@@ -1,6 +1,6 @@
 # Roadmap — gestease-mecanics
 
-## Phase 1 — Deploiement public (en cours)
+## Phase 1 — Deploiement public ✅
 
 ### 1.1 Repo et branding
 - [x] README avec documentation des 11 modules
@@ -9,18 +9,18 @@
 - [x] docker-compose.example.yml (standalone)
 - [x] Topics GitHub SEO (cnc, machining, tap-drill, etc.)
 - [x] Description GitHub
-- [ ] Rendre le repo PUBLIC (`gh repo edit GestEase/gestease-mecanics --visibility public`)
+- [x] Rendre le repo PUBLIC
 
 ### 1.2 Deploiement VPS Hostinger
 - [x] Route Cloudflare `mecanics.gestease.ca` → nginx-proxy
-- [ ] Builder image Docker `ghcr.io/gestease/gestease-mecanics:latest`
-- [ ] Ajouter le container dans le docker-compose de prod sur le VPS
-- [ ] Ajouter server block nginx-proxy pour `mecanics.gestease.ca`
-- [ ] Deployer et valider (`curl https://mecanics.gestease.ca/health`)
+- [x] Builder image Docker `ghcr.io/gestease/gestease-mecanics:latest`
+- [x] Ajouter le container dans le docker-compose de prod sur le VPS
+- [x] Ajouter server block nginx-proxy pour `mecanics.gestease.ca`
+- [x] Deployer et valider (`curl https://mecanics.gestease.ca/health`)
 
 ### 1.3 CI/CD
-- [ ] Workflow GitHub Actions `build-and-push.yml` (build image + push ghcr.io)
-- [ ] Workflow deploy VPS (SSH pull + restart container)
+- [x] Workflow GitHub Actions `deploy-mecanics-prod.yml` (build image + push ghcr.io)
+- [x] Workflow deploy VPS (SSH pull + restart container + nginx reload)
 
 ---
 
