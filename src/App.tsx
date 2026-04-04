@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Routes, Route, Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import type { UnitSystem } from './types/index'
 import { routes, defaultRoute } from './routes'
+import { trackPageView, trackSearch, trackCtaClick } from './lib/analytics'
 import TabNav from './components/TabNav'
 import ThemeSwitcher from './components/ThemeSwitcher'
 import ImperialTab from './components/ImperialTab'
@@ -39,7 +40,22 @@ function useSeoMeta() {
       document.head.appendChild(canonical)
     }
     canonical.href = `https://mecanics.gestease.ca${pathname}`
+
+    // GA4: track page_view on each SPA route change
+    trackPageView(pathname, route.title)
   }, [pathname])
+}
+
+// ─── GA4: debounced search tracking ──────────────────────────────────────────
+function useSearchTracking(search: string) {
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined)
+  useEffect(() => {
+    clearTimeout(timerRef.current)
+    if (search.length >= 2) {
+      timerRef.current = setTimeout(() => trackSearch(search), 800)
+    }
+    return () => clearTimeout(timerRef.current)
+  }, [search])
 }
 
 // ─── Layout shell (header + tabnav + footer) ─────────────────────────────────
@@ -54,8 +70,13 @@ function AppShell({ search, setSearch, units, setUnits }: ShellProps) {
   const location = useLocation()
   const navigate = useNavigate()
   useSeoMeta()
+  useSearchTracking(search)
 
   const activeRoute = routes.find(r => r.path === location.pathname) ?? defaultRoute
+
+  const handleCtaClick = useCallback((ctaName: string, url: string) => {
+    trackCtaClick(ctaName, url)
+  }, [])
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -106,6 +127,7 @@ function AppShell({ search, setSearch, units, setUnits }: ShellProps) {
                 style={{ background: 'var(--muted)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = 'var(--accent)'; el.style.borderColor = 'var(--accent)' }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.color = 'var(--text-secondary)'; el.style.borderColor = 'var(--border)' }}
+                onClick={() => handleCtaClick('Conception', 'https://gestease.ca/conception')}
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" /></svg>
                 Conception
@@ -116,6 +138,7 @@ function AppShell({ search, setSearch, units, setUnits }: ShellProps) {
                 style={{ background: 'var(--accent)', color: 'var(--text-on-accent)' }}
                 onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '0.85' }}
                 onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.opacity = '1' }}
+                onClick={() => handleCtaClick('GestFlow', 'https://gestease.ca/gestflow')}
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /></svg>
                 GestFlow
