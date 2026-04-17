@@ -21,12 +21,12 @@ export default function PipeTab({ search, units }: Props) {
     { key: 'nominalSize' as const, label: 'Nominal Size', render: (v: unknown) => <span className="font-mono font-bold text-pipe">{String(v)}</span> },
     { key: 'standard' as const, label: 'Standard', render: (v: unknown) => {
       const colors: Record<string, string> = {
-        'NPT': 'bg-pipe/20 text-pipe',
-        'NPTF': 'bg-orange-800/30 text-orange-300',
-        'BSPP (G)': 'bg-blue-800/30 text-blue-300',
-        'BSPT (R)': 'bg-cyan-800/30 text-cyan-300',
+        'NPT': 'text-pipe',
+        'NPTF': 'text-orange-700',
+        'BSPP (G)': 'text-blue-700',
+        'BSPT (R)': 'text-cyan-700',
       }
-      return <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
+      return <span className={`font-mono text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
     }},
     { key: 'tpi' as const, label: 'TPI', align: 'right' as const },
     { key: 'taper' as const, label: 'Taper' },

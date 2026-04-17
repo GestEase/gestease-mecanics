@@ -25,25 +25,25 @@ export default function APITab({ search, units }: Props) {
     { key: 'connectionSize' as const, label: 'Connection', render: (v: unknown) => <span className="font-mono font-bold text-api">{String(v)}</span> },
     { key: 'standard' as const, label: 'Standard', render: (v: unknown) => {
       const colors: Record<string, string> = {
-        'NC':  'bg-api/20 text-api',
-        'REG': 'bg-orange-800/30 text-orange-300',
-        'FH':  'bg-blue-800/30 text-blue-300',
-        'IF':  'bg-cyan-800/30 text-cyan-300',
-        'STC': 'bg-emerald-800/30 text-emerald-300',
-        'LTC': 'bg-green-800/30 text-green-300',
-        'BTC': 'bg-red-800/30 text-red-300',
-        'EUE': 'bg-violet-800/30 text-violet-300',
-        'NUE': 'bg-purple-800/30 text-purple-300',
+        'NC':  'text-api',
+        'REG': 'text-orange-700',
+        'FH':  'text-blue-700',
+        'IF':  'text-cyan-700',
+        'STC': 'text-emerald-700',
+        'LTC': 'text-green-700',
+        'BTC': 'text-red-700',
+        'EUE': 'text-violet-700',
+        'NUE': 'text-purple-700',
       }
-      return <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
+      return <span className={`font-mono text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
     }},
     { key: 'category' as const, label: 'Type', render: (v: unknown) => {
       const colors: Record<string, string> = {
-        'Rotary Shouldered': 'bg-api/10 text-api',
-        'Casing': 'bg-emerald-900/30 text-emerald-400',
-        'Tubing': 'bg-violet-900/30 text-violet-400',
+        'Rotary Shouldered': 'text-api',
+        'Casing': 'text-emerald-700',
+        'Tubing': 'text-violet-700',
       }
-      return <span className={`px-1.5 py-0.5 rounded text-xs font-medium ${colors[String(v)] || ''}`}>{String(v)}</span>
+      return <span className={`font-semibold text-xs ${colors[String(v)] || ''}`}>{String(v)}</span>
     }},
     { key: 'apiSpec' as const, label: 'Norme' },
     { key: 'tpi' as const, label: 'TPI', align: 'right' as const },
@@ -64,7 +64,7 @@ export default function APITab({ search, units }: Props) {
     { key: 'makeUpTorque' as const, label: 'Make-up (ft-lb)', align: 'right' as const, render: (v: unknown) => <span className="font-mono text-xs">{String(v)}</span> },
     { key: 'grade' as const, label: 'Grade', render: (v: unknown) => {
       const g = String(v)
-      const color = g === 'S135' ? 'text-api font-bold' : g === 'P110' ? 'text-red-400 font-bold' : 'text-steel-200'
+      const color = g === 'S135' ? 'text-api font-bold' : g === 'P110' ? 'text-pipe font-bold' : 'text-steel-200'
       return <span className={`font-mono ${color}`}>{g}</span>
     }},
     { key: 'useCase' as const, label: 'Usage' },

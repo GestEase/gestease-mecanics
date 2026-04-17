@@ -23,12 +23,12 @@ export default function HydraulicTab({ search, units }: Props) {
     { key: 'dashSize' as const, label: 'Dash / Size', render: (v: unknown) => <span className="font-mono font-bold text-hydraulic">{String(v)}</span> },
     { key: 'standard' as const, label: 'Standard', render: (v: unknown) => {
       const colors: Record<string, string> = {
-        'SAE ORB': 'bg-hydraulic/20 text-hydraulic',
-        'JIC 37\u00b0': 'bg-orange-800/30 text-orange-300',
-        'ORFS': 'bg-blue-800/30 text-blue-300',
-        'Metric ISO 6149': 'bg-emerald-800/30 text-emerald-300',
+        'SAE ORB': 'text-hydraulic',
+        'JIC 37\u00b0': 'text-orange-700',
+        'ORFS': 'text-blue-700',
+        'Metric ISO 6149': 'text-emerald-700',
       }
-      return <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
+      return <span className={`font-mono text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
     }},
     { key: 'threadSize' as const, label: 'Filet' },
     { key: 'tpiOrPitch' as const, label: 'TPI / Pas' },

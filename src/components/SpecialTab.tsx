@@ -18,13 +18,13 @@ export default function SpecialTab({ search, units: _units }: Props) {
     { key: 'tapSize' as const, label: 'Tap Size', render: (v: unknown) => <span className="font-mono font-bold text-special">{String(v)}</span> },
     { key: 'threadType' as const, label: 'Type', render: (v: unknown) => {
       const colors: Record<string, string> = {
-        'ACME General': 'bg-special/20 text-special',
-        'Stub ACME': 'bg-purple-800/30 text-purple-300',
-        'Buttress 45\u00b0/7\u00b0': 'bg-pink-800/30 text-pink-300',
-        'UNEF': 'bg-indigo-800/30 text-indigo-300',
-        'Trapezoidal ISO': 'bg-fuchsia-800/30 text-fuchsia-300',
+        'ACME General': 'text-special',
+        'Stub ACME': 'text-purple-700',
+        'Buttress 45\u00b0/7\u00b0': 'text-pink-700',
+        'UNEF': 'text-indigo-700',
+        'Trapezoidal ISO': 'text-fuchsia-700',
       }
-      return <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
+      return <span className={`font-mono text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
     }},
     { key: 'tpiPitch' as const, label: 'TPI / Pitch' },
     { key: 'flankAngle' as const, label: 'Angle' },

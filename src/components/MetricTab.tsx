@@ -28,7 +28,7 @@ export default function MetricTab({ search, units }: Props) {
   const columns = [
     { key: 'tapSize' as const, label: 'Tap Size', render: (v: unknown) => <span className="font-mono font-bold text-metric">{String(v)}</span> },
     { key: 'series' as const, label: 'Series', render: (v: unknown) => (
-      <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${v === 'Coarse' ? 'bg-metric/20 text-metric' : 'bg-emerald-800/30 text-emerald-300'}`}>
+      <span className={`font-mono text-xs font-semibold ${v === 'Coarse' ? 'text-metric' : 'text-emerald-700'}`}>
         {String(v)}
       </span>
     )},

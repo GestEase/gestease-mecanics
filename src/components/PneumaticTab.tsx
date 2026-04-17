@@ -21,13 +21,13 @@ export default function PneumaticTab({ search, units }: Props) {
     { key: 'portSize' as const, label: 'Port', render: (v: unknown) => <span className="font-mono font-bold text-pneumatic">{String(v)}</span> },
     { key: 'standard' as const, label: 'Standard', render: (v: unknown) => {
       const colors: Record<string, string> = {
-        'NPT':         'bg-red-800/30 text-red-300',
-        'BSPP (G)':    'bg-emerald-800/30 text-emerald-300',
-        'BSPT (R)':    'bg-amber-800/30 text-amber-300',
-        'Metric Mini':  'bg-pneumatic/20 text-pneumatic',
-        'UNF Mini':     'bg-purple-800/30 text-purple-300',
+        'NPT':         'text-red-700',
+        'BSPP (G)':    'text-emerald-700',
+        'BSPT (R)':    'text-amber-700',
+        'Metric Mini':  'text-pneumatic',
+        'UNF Mini':     'text-purple-700',
       }
-      return <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
+      return <span className={`font-mono text-xs font-semibold ${colors[String(v)] || ''}`}>{String(v)}</span>
     }},
     { key: 'threadSpec' as const, label: 'Filet' },
     { key: 'majorDia' as const, label: isIn ? 'Major \u00d8 (in)' : 'Major \u00d8 (mm)', align: 'right' as const, render: (v: unknown) => {

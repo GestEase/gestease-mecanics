@@ -23,7 +23,7 @@ export default function ImperialTab({ search, units }: Props) {
   const columns = [
     { key: 'tapSize' as const, label: 'Tap Size', render: (v: unknown) => <span className="font-mono font-bold text-imperial">{String(v)}</span> },
     { key: 'series' as const, label: 'Series', render: (v: unknown) => (
-      <span className={`px-1.5 py-0.5 rounded text-xs font-semibold ${v === 'UNC' ? 'bg-imperial/20 text-imperial' : 'bg-amber-800/30 text-amber-300'}`}>
+      <span className={`font-mono text-xs font-semibold ${v === 'UNC' ? 'text-imperial' : 'text-amber-700'}`}>
         {String(v)}
       </span>
     )},
